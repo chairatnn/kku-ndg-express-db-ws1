@@ -14,6 +14,15 @@ async function listBooks(limit = 20) {
   return result.rows;
 }
 
+// เพิ่มฟังก์ชัน getBookById
+async function getBookById(id) {
+  const sql = `SELECT book_id, title, author, category_id, created_at
+               FROM ${qualify('books')}
+               WHERE book_id = $1`;
+  const result = await pool.query(sql, [id]);
+  return result.rows[0]; // ส่งคืน Object แถวแรก หรือ undefined ถ้าไม่พบ
+}
+
 async function createBook({ title, author }) {
   const sql = `INSERT INTO ${qualify('books')} (title, author)
                VALUES ($1, $2)
@@ -22,4 +31,4 @@ async function createBook({ title, author }) {
   return result.rows[0];
 }
 
-module.exports = { listBooks, createBook };
+module.exports = { listBooks, getBookById, createBook };

@@ -18,6 +18,7 @@ router.post('/', async (req, res) => {
   res.status(201).json({ data: created });
 });
 
+// เพิ่ม route สำหรับการดึงข้อมูลรายตัว โดยส่ง id ไปที่ repository
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
   try {
