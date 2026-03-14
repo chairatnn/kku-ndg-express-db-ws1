@@ -16,7 +16,7 @@ async function listBooks(limit = 20) {
 
 // เพิ่มฟังก์ชัน getBookById
 async function getBookById(id) {
-  const sql = `SELECT book_id, title, author, category_id, created_at
+  const sql = `SELECT book_id, title, author, created_at
                FROM ${qualify('books')}
                WHERE book_id = $1`;
   const result = await pool.query(sql, [id]);
