@@ -5,7 +5,9 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   const limit = Number(req.query.limit || 20);
-  const books = await booksRepo.listBooks(limit);
+  const search = req.query.search || null;
+  const userId = req.query.userId ? Number(req.query.userId) : null;
+  const books = await booksRepo.listBooks(limit, search, userId);
   res.json({ data: books });
 });
 
