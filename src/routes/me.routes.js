@@ -14,3 +14,4 @@ router.get('/', authRequired, (req, res) => {
 });
 
 module.exports = router;
+
